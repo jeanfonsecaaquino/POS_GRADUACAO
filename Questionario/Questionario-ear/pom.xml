@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>br.com.infnet</groupId>
+	<artifactId>Questionario</artifactId>
+	<version>1.0</version>
+  </parent>
+  <artifactId>Questionario-ear</artifactId>
+  <name>br.com.infnet-ear</name>
+  <packaging>ear</packaging>
+  <dependencies>
+    
+    <dependency>
+      <groupId>${project.parent.groupId}</groupId>
+      <artifactId>Questionario-web</artifactId>
+      <version>${project.parent.version}</version>
+      <type>war</type>
+      <scope>runtime</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>${project.parent.groupId}</groupId>
+      <artifactId>Questionario-ejb</artifactId>
+      <version>${project.parent.version}</version>
+      <type>ejb</type>
+      <scope>runtime</scope>
+    </dependency>
+    
+	<dependency>
+	  <groupId>commons-collections</groupId>
+	  <artifactId>commons-collections</artifactId>
+	  <scope>compile</scope>
+	</dependency>
+	
+  </dependencies>
+
+  <build>
+  
+    <sourceDirectory>src/main/application</sourceDirectory>
+    <outputDirectory>target/classes</outputDirectory>
+    
+    <resources>
+      <resource>
+        <directory>src/main/application</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <finalName>br.com.infnet-ear</finalName>
+    
+    <plugins>
+    
+      <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<configuration>
+			<source>${configuration.source}</source>
+          	<target>${configuration.target}</target>
+		</configuration>
+	  </plugin>
+      
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <configuration>
+          <version>5</version>
+          <earSourceDirectory>src/main/application</earSourceDirectory>
+          <defaultLibBundleDir>lib</defaultLibBundleDir>
+          <modules>
+           	<ejbModule>
+              <groupId>${project.parent.groupId}</groupId>
+              <artifactId>Questionario-ejb</artifactId>
+              <bundleFileName>Questionario-ejb.jar</bundleFileName>
+            </ejbModule>
+            <webModule>
+              <groupId>${project.parent.groupId}</groupId>
+              <artifactId>Questionario-web</artifactId>
+              <bundleFileName>Questionario-web.war</bundleFileName>
+              <contextRoot>Questionario-web</contextRoot>
+            </webModule>
+          </modules>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </build>
+  
+  
+</project>

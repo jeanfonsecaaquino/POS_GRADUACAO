@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.0">
+    
+  <deployment>
+  	<dependencies>
+  	  <module name="org.slf4j" export="true"/>
+  	  <module name="javax.servlet.api" export="true"/>
+     </dependencies>
+  </deployment>
+ 
+  <sub-deployment name="Questionario-web.war">
+    <dependencies>
+      <module name="org.slf4j"/>
+  	  <module name="javax.servlet.api"/>
+    </dependencies>
+  </sub-deployment>
+  <sub-deployment name="Questionario-ejb.jar">
+  	<dependencies>
+  		<module name="org.slf4j"/>
+  	</dependencies>
+  </sub-deployment>
+</jboss-deployment-structure>
