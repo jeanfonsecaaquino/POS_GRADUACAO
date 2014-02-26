@@ -16,9 +16,9 @@ public class DAOFactoryImpl implements DAOFactory{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private static final String PACOTE_ENTIDADES = "entidades";
-	private static final String PACOTE_CRUD = "jean.archetype.daoFactoryImp";
-	private static final String SUFIXO_CRUD = "CRUD";
+	private static final String PACOTE_ENTIDADES = "dto";
+	private static final String PACOTE_CRUD = "br.com.infnet.questionario";
+	private static final String SUFIXO_CRUD = "DAO";
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	public static String getNomeDAO(Class<?> entidade){
