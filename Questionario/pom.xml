@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.infnet</groupId>
 	<artifactId>Questionario</artifactId>
@@ -33,17 +34,26 @@
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<jsf.version>2.1.7</jsf.version>
-		<primefaces.version>3.5</primefaces.version>
+		<primefaces.version>4.0</primefaces.version>
 		<primefaces.theme>cupertino</primefaces.theme>
 		<primefaces.theme.version>1.0.9</primefaces.theme.version>
 		<configuration.ejbVersion>3.0</configuration.ejbVersion>
 		<org.springframework.version>3.0.5.RELEASE</org.springframework.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 
 		<dependencies>
-		
+
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
@@ -159,7 +169,7 @@
 				<version>3.0.1</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
 		</dependencies>
 
 	</dependencyManagement>
@@ -230,9 +240,9 @@
 
 	</build>
 
-  <modules>
-    <module>Questionario-ejb</module>
-    <module>Questionario-ear</module>
-    <module>Questionario-web</module>
-  </modules>
+	<modules>
+		<module>Questionario-ejb</module>
+		<module>Questionario-ear</module>
+		<module>Questionario-web</module>
+	</modules>
 </project>
