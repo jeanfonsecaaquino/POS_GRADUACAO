@@ -30,7 +30,7 @@ public class Login implements Serializable{
 	@Column
 	private String senha;
 	
-	@Column
+	@Column(columnDefinition="enum('P','A','S')")
 	@Enumerated(EnumType.STRING)
 	private PERFIL perfil;
 	
@@ -78,6 +78,14 @@ public class Login implements Serializable{
 
 	public void setPerfil(PERFIL perfil) {
 		this.perfil = perfil;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

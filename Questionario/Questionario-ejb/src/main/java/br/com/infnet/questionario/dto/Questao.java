@@ -32,6 +32,12 @@ public class Questao implements Serializable{
 	public Questao() {
 	}
 
+	public Questao(Integer codQuestao, String descricao, OPCAO opcao) {
+		this.codQuestao = codQuestao;
+		this.descricao = descricao;
+		this.opcao = opcao;
+	}
+
 	public Integer getCodQuestao() {
 		return codQuestao;
 	}

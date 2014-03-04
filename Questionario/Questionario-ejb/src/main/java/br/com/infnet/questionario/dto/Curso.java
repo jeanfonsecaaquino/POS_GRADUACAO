@@ -27,7 +27,6 @@ public class Curso implements Serializable{
 	}
 
 	public Curso(Integer codCurso, String nome) {
-		super();
 		this.codCurso = codCurso;
 		this.nome = nome;
 	}

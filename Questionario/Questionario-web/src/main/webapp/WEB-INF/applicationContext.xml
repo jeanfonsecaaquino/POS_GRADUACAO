@@ -5,25 +5,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-
-	<!--  
-    <global-method-security pre-post-annotations="enabled">
-    </global-method-security>
-	-->
 	
     <http auto-config="true">
-        <intercept-url pattern="/restrict/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/restrict/**" access="ROLE_PROFESSOR,ROLE_ALUNO,ROLE_SECRETARIA"/>
        	<http-basic/>
         <access-denied-handler error-page="/permissaoNegada.xhtml"/>
-        <form-login authentication-failure-url="/permissaoNegada.xhtml" always-use-default-target="true"/>
+        <form-login authentication-failure-url="/index.xhtml?erro=true" login-page="/index.xhtml" default-target-url="/restrict/home.xhtml" always-use-default-target="true"/>
     </http>
     
-    <authentication-manager>
-        <authentication-provider>
-        	<user-service>
-        		<user name="JEAN" password="JEAN" authorities="ROLE_ADMIN"/>
-        	</user-service>
-        </authentication-provider>
-    </authentication-manager>
+	<beans:bean id="customAuthenticationProvider" class="br.com.infnet.autenticacao.ProvedorAutenticacao" />
+    
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="customAuthenticationProvider"/>
+	</authentication-manager>
 		
 </beans:beans>

@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -19,6 +20,7 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 
 	private static Logger log = LoggerFactory.getLogger(GenericCRUD.class);
 	
+	@PersistenceContext(unitName="questionario")
 	private EntityManager entityManager;
 	
 	private Class<T> classePersistente;
@@ -73,7 +75,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
 
 		return entity;
@@ -96,7 +97,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
 
 		return entity;
@@ -116,7 +116,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
 	}
 
@@ -136,7 +135,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 			
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
 		
 		
@@ -164,7 +162,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 
 		} catch (Exception e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
 
 		return criteria.list();
@@ -188,7 +185,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 			
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
   	
 		return entidade;
@@ -210,7 +206,6 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
 		}
 		return entidade;
 	}
@@ -225,12 +220,10 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 	public T mesclar(T entidade) throws Exception{
 		
 		try {
-			
 			return getEntityManager().merge(entidade);
-
 		} catch (HibernateException e) {
 			log.info(e.getMessage(), e.getStackTrace());
-			throw new Exception(e);
+			return null;
 		}
 	}
 	public Long retornarMaxId() throws Exception {

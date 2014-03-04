@@ -2,7 +2,7 @@ package br.com.infnet.questionario.dto;
 
 public enum PERFIL {
 
-	P("PROFESSOR"),A("ALUNO"),S("SECRETARIA");
+	P("ROLE_PROFESSOR"),A("ROLE_ALUNO"),S("ROLE_SECRETARIA");
 	
 	private String stringValue;
 	

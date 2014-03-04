@@ -7,16 +7,38 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-	</h:head>
-	<h:body>
-		<p:panel header="#{MBBaseBean.helloWordCDI}">
-			#{MBBaseBean.logTest}
-			<h:form>
-				<p:commandButton ajax="false" actionListener="#{MBBaseBean.LogAspectJTest}" value="Testar Log Aspect J"></p:commandButton>
-			</h:form>
-		</p:panel>
-	</h:body>
+<h:head>
+</h:head>
+<h:body>
+	<p:dialog header="Efetuar Login" resizable="false" modal="true" closable="false" visible="true" draggable="false" width="600">
+		
+		<form action="j_spring_security_check" method="post">
+			 <h:panelGrid columns="2">
+				 <h:panelGrid columns="2" cellpadding="5" rendered="true">
+		            <h:outputLabel for="j_username" value="Username:" />  
+		            <p:inputText id="j_username" required="true" label="username"/>  
+		              
+		            <h:outputLabel for="j_password" value="Password:" />  
+		            <h:inputSecret id="j_password" required="true" label="password"/>  
+		              
+		            <f:facet name="footer">  
+		                <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 70px;  height: 40px;" id="loginButton" value="Logar" ajax="false"/>  
+		            </f:facet>  
+		        </h:panelGrid>
+		        <p:graphicImage value="estilo/imagens/infnet.png"></p:graphicImage>
+			</h:panelGrid>
+		</form>
+
+		<h:panelGroup rendered="#{param.erro}">
+			<div class="ui-message-warn">
+				<span class="ui-message-warn-detail"> 
+				<h:outputText value="Usuário ou Senha Incorretos!"/>
+				</span>
+			</div>
+		</h:panelGroup>
+
+	</p:dialog>
+</h:body>
 
 
 </html>
