@@ -40,7 +40,6 @@ public class ProvedorAutenticacao implements AuthenticationProvider{
 			login.setSenha(questaoUtils.encrypt(authentication.getPrincipal().toString()));
 			
 			login = loginDao.efetuarLogin(login);
-		
 			
 			if(login!=null){
 				autenticacao = new Autenticacao(login.getPerfil().getStringValue(), authentication);

@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.questionario/security/tags">
 	<h:head>
 	</h:head>
 	<h:body>
@@ -21,8 +22,9 @@
 				<br></br>
 				
 				<p:menubar>
-					<p:submenu label="Tela 1" icon="ui-icon-script">
-						<p:menuitem value="Tela 1" url="/restrict/tela/tela.xhtml" ajax="false"></p:menuitem>
+					<p:submenu label="Avaliações" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_ALUNO,ROLE_PROFESSOR')}">
+						<p:menuitem value="Listar Módulos para Avaliar" url="/restrict/avaliacao/listarModulos.xhtml" ajax="false" rendered="#{sec:areAnyGranted('ROLE_ALUNO')}"></p:menuitem>
+						<p:menuitem value="Avaliações" url="/restrict/avaliacao/listarModulos.xhtml" ajax="false" rendered="#{sec:areAnyGranted('ROLE_PROFESSOR')}"></p:menuitem>
 					</p:submenu>
 				</p:menubar>
 				

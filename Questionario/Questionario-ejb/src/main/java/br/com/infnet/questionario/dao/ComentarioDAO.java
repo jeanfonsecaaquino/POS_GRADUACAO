@@ -1,5 +1,8 @@
 package br.com.infnet.questionario.dao;
 
-public interface ComentarioDAO {
+import br.com.infnet.questionario.daofactoryimp.GenericDAO;
+import br.com.infnet.questionario.dto.Comentario;
+
+public interface ComentarioDAO extends GenericDAO<Comentario, Integer>{
 
 }

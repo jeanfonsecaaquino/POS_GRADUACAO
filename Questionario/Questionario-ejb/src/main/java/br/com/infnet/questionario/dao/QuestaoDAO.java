@@ -1,5 +1,8 @@
 package br.com.infnet.questionario.dao;
 
-public interface QuestaoDAO {
+import br.com.infnet.questionario.daofactoryimp.GenericDAO;
+import br.com.infnet.questionario.dto.Questao;
+
+public interface QuestaoDAO extends GenericDAO<Questao, Integer>{
 
 }

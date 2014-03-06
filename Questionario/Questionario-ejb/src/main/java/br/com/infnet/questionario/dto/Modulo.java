@@ -1,48 +1,44 @@
 package br.com.infnet.questionario.dto;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="curso")
-public class Curso implements Serializable{
+@Table(name="modulo")
+public class Modulo {
 
-	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="cod_curso")
-	private Integer codCurso;
+	@Column(name="cod_modulo")
+	private Integer codModulo;
 	
 	@Column
 	private String nome;
 	
-	@OneToMany(mappedBy="curso",fetch=FetchType.EAGER)
-	private List<Modulo> modulos;
-
-	public Curso() {
+	@ManyToOne
+	@JoinColumn(name="cod_curso")
+	private Curso curso;
+	
+	public Modulo() {
 	}
 
-	public Curso(Integer codCurso, String nome) {
-		this.codCurso = codCurso;
+	public Modulo(Integer codModulo, String nome) {
+		this.codModulo = codModulo;
 		this.nome = nome;
 	}
 
-	public Integer getCodCurso() {
-		return codCurso;
+	public Integer getCodModulo() {
+		return codModulo;
 	}
 
-	public void setCodCurso(Integer codCurso) {
-		this.codCurso = codCurso;
+	public void setCodModulo(Integer codModulo) {
+		this.codModulo = codModulo;
 	}
 
 	public String getNome() {
@@ -52,13 +48,13 @@ public class Curso implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public List<Modulo> getModulos() {
-		return modulos;
+
+	public Curso getCurso() {
+		return curso;
 	}
 
-	public void setModulos(List<Modulo> modulos) {
-		this.modulos = modulos;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 	@Override
@@ -66,7 +62,8 @@ public class Curso implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((codCurso == null) ? 0 : codCurso.hashCode());
+				+ ((codModulo == null) ? 0 : codModulo.hashCode());
+		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -79,11 +76,16 @@ public class Curso implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Curso other = (Curso) obj;
-		if (codCurso == null) {
-			if (other.codCurso != null)
+		Modulo other = (Modulo) obj;
+		if (codModulo == null) {
+			if (other.codModulo != null)
 				return false;
-		} else if (!codCurso.equals(other.codCurso))
+		} else if (!codModulo.equals(other.codModulo))
+			return false;
+		if (curso == null) {
+			if (other.curso != null)
+				return false;
+		} else if (!curso.equals(other.curso))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
@@ -95,7 +97,7 @@ public class Curso implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Curso [codCurso=" + codCurso + ", nome=" + nome + "]";
+		return "Modulo [codModulo=" + codModulo + ", nome=" + nome + "]";
 	}
 	
 }

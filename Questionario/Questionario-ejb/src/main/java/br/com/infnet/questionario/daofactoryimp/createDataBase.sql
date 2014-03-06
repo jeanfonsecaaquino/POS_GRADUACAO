@@ -50,12 +50,24 @@ create table usuario (
         primary key (cod_usuario)
 );
 
+create table modulo (
+  cod_modulo int not null auto_increment,
+  nome varchar(255) null,
+  cod_curso int not null,
+  primary key (`cod_modulo`));
+
 alter table comentario 
         add index FK9E0DE7E1A38C6652 (cod_avaliacao), 
         add constraint FK9E0DE7E1A38C6652 
         foreign key (cod_avaliacao) 
         references avaliacao (cod_avaliacao);
 
+alter table modulo
+		add index fk9e0de7e156f9737x_idx (cod_curso),
+		add constraint fk9e0de7e156f9737x
+		foreign key (cod_curso)
+		references curso (cod_curso)
+        
 alter table comentario 
         add index FK9E0DE7E156F9737C (cod_usuario), 
         add constraint FK9E0DE7E156F9737C 
@@ -82,3 +94,6 @@ alter table resposta
         
 insert into usuario values(null,'116.365.407-83','Jean Fonseca');
 insert into login values(null,'jean','P',md5('jean'),1);
+
+insert into curso values(null,'Eng Software');
+insert into modulo values(null,'WEB',1);

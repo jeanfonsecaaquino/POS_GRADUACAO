@@ -12,8 +12,16 @@
 </h:head>
 <h:body>
 	<ui:insert name="toolbar">
-		<ui:include src="template/header.xhtml"></ui:include>
+		<ui:include src="../template/header.xhtml"></ui:include>
 	</ui:insert>
+	
+	<br></br>
+	
+	<p:panel header="Avaliar">
+		Avaliar o Modulo:
+		#{MBCadastrarAvaliacao.modulo.nome}
+	</p:panel>
+	
 </h:body>
 
 

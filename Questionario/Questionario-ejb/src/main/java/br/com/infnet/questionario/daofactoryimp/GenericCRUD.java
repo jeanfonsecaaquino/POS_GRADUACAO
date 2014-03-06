@@ -159,7 +159,9 @@ public abstract class GenericCRUD<T, ID extends Serializable> implements Generic
 			for (Criterion criterion : criterions) {
 				criteria.add(criterion);
 			}
-
+			
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			
 		} catch (Exception e) {
 			log.info(e.getMessage(), e.getStackTrace());
 		}
