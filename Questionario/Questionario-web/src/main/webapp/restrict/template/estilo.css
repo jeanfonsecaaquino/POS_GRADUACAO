@@ -1,0 +1,29 @@
+body {
+	font-size: 11px;
+}
+
+.titulo {
+	margin-bottom: 20px;
+}
+
+.titulo label{
+	font-size: 25px;
+	font: bold;
+}
+
+.painelbox{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.mensagemHeader{
+	margin-top: 30px;
+}
+
+.respostas{
+	font-weight:bold;
+	color: #993300;
+	margin-left: 20px;
+}

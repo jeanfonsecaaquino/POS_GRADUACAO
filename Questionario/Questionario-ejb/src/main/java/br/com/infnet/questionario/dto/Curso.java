@@ -19,7 +19,7 @@ public class Curso implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cod_curso")
 	private Integer codCurso;
 	

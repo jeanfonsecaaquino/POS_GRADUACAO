@@ -12,22 +12,20 @@
 	<h:body>
 		<ui:composition>
 			<h:form>
-				
 				<p:menu style="width:20%;">
 					<p:submenu label="Bem Vindo(a), #{MBUsuarioLogado.login.usuario.nome}">
 						<p:menuitem value="Sair" icon="ui-icon-power" url="/j_spring_security_logout" />
 					</p:submenu>
 				</p:menu>
-				
 				<br></br>
-				
 				<p:menubar>
-					<p:submenu label="Avaliações" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_ALUNO,ROLE_PROFESSOR')}">
-						<p:menuitem value="Listar Módulos para Avaliar" url="/restrict/avaliacao/listarModulos.xhtml" ajax="false" rendered="#{sec:areAnyGranted('ROLE_ALUNO')}"></p:menuitem>
-						<p:menuitem value="Avaliações" url="/restrict/avaliacao/listarModulos.xhtml" ajax="false" rendered="#{sec:areAnyGranted('ROLE_PROFESSOR')}"></p:menuitem>
+					<p:submenu label="Avaliações" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_ALUNO')}">
+						<p:menuitem value="Listar Módulos para Avaliação" url="/restrict/avaliacao/listarModulos.xhtml" ajax="false" rendered="#{sec:areAnyGranted('ROLE_ALUNO')}"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Perguntas" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Pergunas" url="/restrict/avaliacao/cadastrarQuestao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 				</p:menubar>
-				
 			</h:form>
 		</ui:composition>
 	</h:body>

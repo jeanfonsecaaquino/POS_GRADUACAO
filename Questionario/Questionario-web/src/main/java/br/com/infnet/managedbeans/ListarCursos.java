@@ -1,25 +1,26 @@
 package br.com.infnet.managedbeans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.infnet.autenticacao.ProvedorAutenticacao;
 import br.com.infnet.questionario.dao.CursoDAO;
 import br.com.infnet.questionario.dto.Curso;
 
-@Named("MBListarCursos")
+@ManagedBean(name="MBListarCursos")
 @ViewScoped
-public class ListarCursos {
+public class ListarCursos implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private List<Curso> cursos;
-	private static Logger log = LoggerFactory.getLogger(ProvedorAutenticacao.class);
+	private static Logger log = LoggerFactory.getLogger(ListarCursos.class);
 	
 	@EJB
 	private CursoDAO cursoDao;

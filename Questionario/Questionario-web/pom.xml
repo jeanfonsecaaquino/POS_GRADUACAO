@@ -120,9 +120,6 @@
 
 	<build>
 
-		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-		<outputDirectory>${basedir}/target/classes</outputDirectory>
-
 		<resources>
 			<resource>
 				<directory>${basedir}/src/main/java</directory>
@@ -146,6 +143,7 @@
 					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
 					<source>${configuration.source}</source>
 					<target>${configuration.target}</target>
+					<webXml>src\main\webapp\WEB-INF\web.xml</webXml>
 				</configuration>
 			</plugin>
 

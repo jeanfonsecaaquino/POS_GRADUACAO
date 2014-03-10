@@ -7,22 +7,54 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:sec="http://www.questionario/security/tags">
-
 <h:head>
+	<link rel="stylesheet" type="text/css"  href="../template/estilo.css"/>
 </h:head>
 <h:body>
-	<ui:insert name="toolbar">
-		<ui:include src="../template/header.xhtml"></ui:include>
-	</ui:insert>
-	
+	<div class="painelbox">
+		<ui:insert name="toolbar">
+			<ui:include src="../template/header.xhtml"></ui:include>
+		</ui:insert>
+	</div>
 	<br></br>
-	
-	<p:panel header="Avaliar">
-		Avaliar o Modulo:
-		#{MBCadastrarAvaliacao.modulo.nome}
-	</p:panel>
-	
+	<h:form id="formCadastroAvaliacao">
+		<p:panel styleClass="painelbox">
+			<div class="titulo">
+				<h:outputLabel styleClass="label" value="Avaliação - Alunos da Pós Graduação"></h:outputLabel>
+			</div>
+			<h:panelGrid columns="1">
+				<h:outputLabel value="CPF: #{MBUsuarioLogado.login.usuario.cpf}"></h:outputLabel> 
+				<h:outputLabel value="Módulo: #{MBCadastrarAvaliacao.modulo.nome}"></h:outputLabel> 
+			</h:panelGrid>
+			<div class="mensagemHeader">
+				Por favor preencha essa avaliação com toda a atenção. 
+				Ela é muito importante para a melhoria de seu curso. 
+				É através das avaliações que poderemos construir um curso cada vez melhor, 
+				o que é importante para você agora e para o valor de seu diploma no futuro
+			</div>
+			<p:growl for="formCadAvaliacao" showSummary="true" showDetail="true"></p:growl>
+		</p:panel>
+		<p:panel styleClass="painelbox" header="Avaliação">
+			<table>
+				<ui:repeat var="questao" value="#{MBCadastrarAvaliacao.questoes}">
+					<tr>
+						<td width="600">#{questao.descricao}</td>
+						<td>
+							<p:selectOneRadio value="#{questao.opcao}" required="true">
+								<f:selectItems value="#{MBCadastrarAvaliacao.opcoes}" />
+							</p:selectOneRadio>
+						</td>
+					</tr>
+				</ui:repeat>
+			</table>
+		</p:panel>
+		<p:panel styleClass="painelbox" header="Você tem Comentários e sugestões?">
+			<p:editor value="#{MBCadastrarAvaliacao.comentario.comentario}"></p:editor>
+			<br></br>
+			<p:commandButton value="Cadastrar Avaliação" action="#{MBCadastrarAvaliacao.cadastrarAvaliacao}" update="@form"></p:commandButton>
+			<br></br>
+			<p:message for="formCadastroAvaliacao" showDetail="true"></p:message>
+		</p:panel>
+	</h:form>
 </h:body>
-
-
 </html>

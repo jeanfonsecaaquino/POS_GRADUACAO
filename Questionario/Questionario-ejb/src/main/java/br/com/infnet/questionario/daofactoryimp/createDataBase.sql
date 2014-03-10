@@ -95,5 +95,8 @@ alter table resposta
 insert into usuario values(null,'116.365.407-83','Jean Fonseca');
 insert into login values(null,'jean','P',md5('jean'),1);
 
+insert into usuario values(null,'116.365.407-83','Secretaria');
+insert into login values(null,'sec','S',md5('sec'),2);
+
 insert into curso values(null,'Eng Software');
 insert into modulo values(null,'WEB',1);

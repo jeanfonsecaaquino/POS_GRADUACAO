@@ -16,7 +16,7 @@
     	<param-value>/WEB-INF/spring-securityTags.xml</param-value>
 	</context-param>
 	
-	então basta chamar o namespace http://www.JeanFonseca/security/tags
+	então basta chamar o namespace http://www.questionario/security/tags
 	-->
 
 	<namespace>http://www.questionario/security/tags</namespace>

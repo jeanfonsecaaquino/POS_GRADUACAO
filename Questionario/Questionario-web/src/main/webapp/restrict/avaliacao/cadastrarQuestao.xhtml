@@ -20,29 +20,16 @@
 	
 	<br></br>
 	
-	<p:panel header="Cursos e Modulos" styleClass="painelbox">
-		<p:dataTable value="#{MBListarCursos.cursos}" var="cursos">
-			<p:column>
-				#{cursos.nome}
-			</p:column>
-			<p:column>
-				<p:accordionPanel activeIndex="">
-					<p:tab title="Módulos">
-						<ui:repeat var="modulo" value="#{cursos.modulos}">
-								<table>
-									<tr>
-										<p:commandButton value="Avaliar" action="#{MBCadastrarAvaliacao.redirectAvaliar(modulo)}">
-										</p:commandButton>
-									</tr>
-									<tr>
-										<h:outputLabel value="#{modulo.nome}" />
-									</tr>
-								</table>
-						</ui:repeat>
-					</p:tab> 
-				</p:accordionPanel>				
-			</p:column>
-		</p:dataTable>
+	<p:panel header="Cadastro de Questões" styleClass="painelbox">
+		<h:form id="formCadastroQuestao">
+			<h:panelGrid columns="2">
+				Nome:
+				<p:inputText value="#{MBCadastrarQuestao.questao.descricao}" id="descricao" required="true" requiredMessage="O Campo Descrição deve ser preenchido"></p:inputText>
+				<p:commandButton value="Cadastrar" action="#{MBCadastrarQuestao.cadastrarQuestao}" update="@form"></p:commandButton>						
+			</h:panelGrid>
+			<p:message for="formCadastroQuestao" showDetail="true"></p:message>
+			<p:message for="descricao" showDetail="true"></p:message>
+		</h:form>
 	</p:panel>
 	
 </h:body>

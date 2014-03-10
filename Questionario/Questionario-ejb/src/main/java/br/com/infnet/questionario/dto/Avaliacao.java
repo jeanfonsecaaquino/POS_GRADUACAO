@@ -3,6 +3,7 @@ package br.com.infnet.questionario.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,14 +19,14 @@ public class Avaliacao implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cod_avaliacao")
 	private Integer codAvaliacao;
 	
-	@OneToMany(mappedBy="avaliacao")
+	@OneToMany(mappedBy="avaliacao",cascade=CascadeType.ALL)
 	private List<Resposta> respostas;
 	
-	@OneToMany(mappedBy="avaliacao")
+	@OneToMany(mappedBy="avaliacao",cascade=CascadeType.ALL)
 	private List<Comentario> comentarios;
 	
 	public Avaliacao() {

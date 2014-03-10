@@ -1,8 +1,8 @@
 package br.com.infnet.managedbeans;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -11,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import br.com.infnet.autenticacao.Autenticacao;
 import br.com.infnet.questionario.dto.Login;
 
-@Named("MBUsuarioLogado")
+@ManagedBean(name="MBUsuarioLogado")
 @SessionScoped
 public class UsuarioLogado {
 
