@@ -2,6 +2,7 @@ package br.com.infnet.questionario.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Usuario implements Serializable{
 	@Column
 	private String cpf;
 	
-	@OneToOne(mappedBy="usuario")
+	@OneToOne(mappedBy="usuario",cascade=CascadeType.ALL)
 	private Login login;
 	
 	public Usuario() {
