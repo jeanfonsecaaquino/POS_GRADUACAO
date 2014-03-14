@@ -7,11 +7,13 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.infnet.questionario.dao.AvaliacaoDAO;
 import br.com.infnet.questionario.daofactoryimp.GenericCRUD;
 import br.com.infnet.questionario.dto.Avaliacao;
 import br.com.infnet.questionario.dto.Comentario;
+import br.com.infnet.questionario.dto.Login;
 import br.com.infnet.questionario.dto.Questao;
 import br.com.infnet.questionario.dto.Resposta;
 @Stateless
