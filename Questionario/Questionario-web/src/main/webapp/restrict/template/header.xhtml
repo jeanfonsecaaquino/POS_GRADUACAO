@@ -25,6 +25,9 @@
 					<p:submenu label="Perguntas" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
 						<p:menuitem value="Cadastrar Pergunas" url="/restrict/avaliacao/cadastrarQuestao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
+					<p:submenu label="Usuários" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Novo Usuário" url="/restrict/usuario/cadastroNovoUsuario.xhtml" ajax="false"></p:menuitem>
+					</p:submenu>
 				</p:menubar>
 			</h:form>
 		</ui:composition>

@@ -1,6 +1,8 @@
 package br.com.infnet.managedbeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -8,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -15,19 +18,24 @@ import org.slf4j.LoggerFactory;
 
 import br.com.infnet.questionario.dao.UsuarioDAO;
 import br.com.infnet.questionario.dto.Login;
-import br.com.infnet.questionario.dto.Modulo;
+import br.com.infnet.questionario.dto.PERFIL;
 import br.com.infnet.questionario.dto.Usuario;
+import br.com.infnet.utils.QuestaoUtils;
 
 @ManagedBean(name = "MBCadastrarUsuario")
 @RequestScoped
-//OBS: Na página inclui um cabeçalho de header e uma configuração de css, da uma olhada no avaliar.xhtml, dai ele vai vir com o menu ja macetado, ai vc pode incluir o menu lá
-// do cadastro e delegar ele para o perfil que podera cadastrar o usuário.. nem faço ideia do perfil que fará isso,, hehe agente pode discutir depois.. 
 public class CadastrarUsuario implements Serializable{
 	
 	@Inject
 	private Usuario usuario;
+	
 	@Inject
 	private Login login;
+	
+	@Inject
+	private QuestaoUtils questaoUtils;
+	
+	private List<SelectItem> perfis;
 	
 	@EJB
 	private UsuarioDAO usuarioDAO;
@@ -38,23 +46,21 @@ public class CadastrarUsuario implements Serializable{
 	@PostConstruct
 	public void init(){
 		usuario.setLogin(login);
-//		Associei ambos para que na pagina os campos sejam inputados da seguinte forma --> #{MBCadastrarUsuario.usuario.login.senha}, #{MBCadastrarUsuario.usuario.login.login} etc.. 
-	}
-	
-	public void inserirLogin(){
-//		Associação inversa para o hibernate gerar as chaves FK's nas Tabelas OBS: Não esquecer de incluir o cascade no mapeamento, da uma olhada como ficou o dto avaliação para ter uma ideia do Cascate.Type.All
-		login.setUsuario(usuario);
-		try {
-			usuarioDAO.salvar(usuario);
-		} catch (Exception e) {
-			log.error(e.getMessage(),e);
+		perfis = new ArrayList<SelectItem>();
+		perfis.clear();
+		for (PERFIL perfil : PERFIL.values()) {
+			SelectItem selectItem = new SelectItem(perfil,perfil.getLabelValue());
+			perfis.add(selectItem);
 		}
 	}
 	
+
 	public void cadastrarUsuario(){
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		try {
-			usuarioDAO.salvar(usuario,login);
+			usuario.getLogin().setSenha(questaoUtils.encrypt(usuario.getLogin().getSenha()));
+			login.setUsuario(usuario);
+			usuarioDAO.salvar(usuario);
 			facesContext.addMessage("formCadastroUsuario", new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Usuário Cadastrado com Sucesso"));
 		} catch (Exception e) {
 			facesContext.addMessage("formCadastroUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Ocorreu um Problema"));
@@ -62,9 +68,20 @@ public class CadastrarUsuario implements Serializable{
 		}
 	}
 	
+	public QuestaoUtils getQuestaoUtils() {
+		return questaoUtils;
+	}
 	
-	public String redirectIndex(){
-		return "index.xhtml?faces-redirect=true";
+	public void setQuestaoUtils(QuestaoUtils questaoUtils) {
+		this.questaoUtils = questaoUtils;
+	}
+
+	public List<SelectItem> getPerfis() {
+		return perfis;
+	}
+	
+	public void setPerfis(List<SelectItem> perfis) {
+		this.perfis = perfis;
 	}
 	
 	public Usuario getUsuario() {

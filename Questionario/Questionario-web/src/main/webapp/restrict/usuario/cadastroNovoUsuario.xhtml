@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css"  href="../../estilo/estilo.css"/>
+</h:head>
+	<h:body>
+	
+		<div class="painelbox">
+			<ui:insert name="toolbar">
+				<ui:include src="../template/header.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	
+		<p:panel styleClass="painelbox">
+				<h:form id="formCadastroUsuario">
+					<h:panelGrid columns="2">
+							<h:outputLabel value="Nome:" />
+							<p:inputText value="#{MBCadastrarUsuario.usuario.nome}" required="true" label="nome" />
+			
+							<h:outputText value="CPF: " />
+							<p:inputMask value="#{MBCadastrarUsuario.usuario.cpf}" mask="999.999.999-99" required="true" />
+			
+							<h:outputLabel value="Username(login):" />
+							<p:inputText value="#{MBCadastrarUsuario.usuario.login.login}" required="true" label="username" />
+			
+							<h:outputLabel value="Password:" />
+							<p:password value="#{MBCadastrarUsuario.usuario.login.senha}" required="true"/>
+							
+							<h:outputLabel value="Perfil:" />
+							<p:selectOneMenu value="#{MBCadastrarUsuario.usuario.login.perfil}">
+								<f:selectItems value="#{MBCadastrarUsuario.perfis}"/>
+							</p:selectOneMenu>
+			
+							<f:facet name="footer">
+								<p:commandButton id="SaveUserButton" value="Cadastrar" ajax="false" action="#{MBCadastrarUsuario.cadastrarUsuario}" />
+								<p:commandButton id="CancelSaveNewUserButton" value="Cancelar" immediate="true" action="../home.xhtml?faces-redirect=true" ajax="false" />
+								<p:message for="formCadastroUsuario" showDetail="true"></p:message>
+							</f:facet>
+		
+					</h:panelGrid>
+				</h:form>
+			</p:panel>
+	</h:body>
+</html>

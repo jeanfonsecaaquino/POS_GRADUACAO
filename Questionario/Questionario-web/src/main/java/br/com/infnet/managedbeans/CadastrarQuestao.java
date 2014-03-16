@@ -23,7 +23,7 @@ public class CadastrarQuestao {
 	@EJB
 	private QuestaoDAO questaoDAO;
 	
-	private static Logger log = LoggerFactory.getLogger(CadastrarAvaliacao.class);
+	private static Logger log = LoggerFactory.getLogger(CadastrarQuestao.class);
 	
 	public Questao getQuestao() {
 		return questao;

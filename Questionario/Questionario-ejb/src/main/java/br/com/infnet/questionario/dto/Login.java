@@ -2,6 +2,7 @@ package br.com.infnet.questionario.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -34,7 +35,7 @@ public class Login implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private PERFIL perfil;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cod_usuario")
 	private Usuario usuario;
 	
