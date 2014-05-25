@@ -23,7 +23,7 @@ create table curso (
 create table login (
         cod_login integer not null auto_increment,
         login varchar(255),
-        perfil enum('P,A,S'),
+        perfil enum('P','A','S'),
         senha varchar(255),
         cod_usuario integer,
         primary key (cod_login)
@@ -66,7 +66,7 @@ alter table modulo
 		add index fk9e0de7e156f9737x_idx (cod_curso),
 		add constraint fk9e0de7e156f9737x
 		foreign key (cod_curso)
-		references curso (cod_curso)
+		references curso (cod_curso);
         
 alter table comentario 
         add index FK9E0DE7E156F9737C (cod_usuario), 
