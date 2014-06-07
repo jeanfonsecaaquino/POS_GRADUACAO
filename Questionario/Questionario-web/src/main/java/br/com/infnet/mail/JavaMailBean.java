@@ -1,4 +1,4 @@
-package br.edu.infnet.mail;
+package br.com.infnet.mail;
 
 import java.util.Date;
 import java.util.Properties;

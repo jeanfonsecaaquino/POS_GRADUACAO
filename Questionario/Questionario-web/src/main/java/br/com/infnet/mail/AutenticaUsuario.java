@@ -1,4 +1,4 @@
-package br.edu.infnet.mail;
+package br.com.infnet.mail;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
