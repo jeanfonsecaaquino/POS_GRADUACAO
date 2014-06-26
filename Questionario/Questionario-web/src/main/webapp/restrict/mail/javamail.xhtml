@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head>
+	<title>Avaliação Infnet - Teste de Envio</title>
+</h:head> 
+<h:body> 
+	<h:form id="formulario">
+		<h:messages/>
+		<h:panelGrid>
+			<f:facet name="header">
+				<h:outputText value="Avaliação Infnet" />
+			</f:facet>
+			<h:outputText value="De:" />
+			<h:inputText value="#{javaMailBean.de}" id="de" required="true"/>
+			<h:outputText value="Para:" />
+			<h:inputText value="#{javaMailBean.para}" id="para" required="true"/>
+			<h:outputText value="Cc:" />
+			<h:inputText value="#{javaMailBean.destinatariosNormais}" id="cc" required="true"/>
+			<h:outputText value="Bcc:" />
+			<h:inputText value="#{javaMailBean.destinatariosOcultos}" id="bcc" required="true"/>
+			<h:outputText value="Assunto:" />
+			<h:inputText value="#{javaMailBean.assunto}" id="assunto" required="true"/>
+			<h:outputText value="Mensagem:" />
+			<h:inputTextarea rows="10" cols="30" value="#{javaMailBean.mensagem}"
+				id="mensagem" required="true" />
+			<h:outputText value="Anexo:" />
+			<h:inputText value="#{javaMailBean.anexo}" />
+			<h:commandButton value="Enviar email simples" action="#{javaMailBean.enviarSimples}" />
+		</h:panelGrid>
+	</h:form>
+</h:body> 
+</html>
