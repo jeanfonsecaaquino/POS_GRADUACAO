@@ -1,13 +1,16 @@
 package br.com.infnet.questionario.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,6 +33,9 @@ public class Usuario implements Serializable{
 	
 	@OneToOne(mappedBy="usuario",cascade=CascadeType.ALL)
 	private Login login;
+	
+	@OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
+	private List<Evento> eventos;
 	
 	public Usuario() {
 	}
