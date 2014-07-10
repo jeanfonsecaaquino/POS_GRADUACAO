@@ -12,6 +12,7 @@
         <intercept-url pattern="/restrict/avaliacao/listarModulos.xhtml" access="ROLE_ALUNO"/>
         <intercept-url pattern="/restrict/avaliacao/cadastrarQuestao.xhtml" access="ROLE_SECRETARIA"/>
         <intercept-url pattern="/restrict/usuario/cadastroNovoUsuario.xhtml" access="ROLE_SECRETARIA"/>
+        <intercept-url pattern="/restrict/usuario/cadastroEvento.xhtml" access="ROLE_SECRETARIA"/>
        	<http-basic/>
         <access-denied-handler error-page="/permissaoNegada.xhtml"/>
         <form-login authentication-failure-url="/index.xhtml?erro=true" login-page="/index.xhtml" default-target-url="/restrict/home.xhtml" always-use-default-target="true"/>

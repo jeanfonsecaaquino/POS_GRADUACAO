@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -22,11 +20,14 @@
 					<p:submenu label="Avaliações" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_ALUNO')}">
 						<p:menuitem value="Listar Módulos para Avaliação" url="/restrict/avaliacao/listarModulos.xhtml" ajax="false" rendered="#{sec:areAnyGranted('ROLE_ALUNO')}"></p:menuitem>
 					</p:submenu>
-					<p:submenu label="Perguntas" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
-						<p:menuitem value="Cadastrar Pergunas" url="/restrict/avaliacao/cadastrarQuestao.xhtml" ajax="false"></p:menuitem>
+					<p:submenu label="Questões" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Questões" url="/restrict/avaliacao/cadastrarQuestao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Usuários" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
 						<p:menuitem value="Cadastrar Novo Usuário" url="/restrict/usuario/cadastroNovoUsuario.xhtml" ajax="false"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Eventos" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Enviar Avaliação" url="/restrict/avaliacao/enviarAvaliacao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 				</p:menubar>
 			</h:form>
