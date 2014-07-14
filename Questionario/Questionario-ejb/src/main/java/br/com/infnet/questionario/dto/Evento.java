@@ -10,26 +10,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="evento")
 public class Evento {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cod_evento")
 	private Integer codEvento;
-	@Column
-	private Date dataInicio;
-	@Column
-	private Date dataFim;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@ForeignKey(name="cod_usuario_evento")
 	private Usuario usuario;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@ForeignKey(name="cod_avaliacao_evento")
 	private Avaliacao avaliacao;
+	
+	@Column(name="data_inicio")
+	@Temporal(TemporalType.DATE)
+	private Date dataInicio;
+	
+	@Column(name="data_fim")
+	@Temporal(TemporalType.DATE)
+	private Date dataFim;
+	
 	/**
 	 * @return the codEvento
 	 */
@@ -41,30 +51,6 @@ public class Evento {
 	 */
 	public void setCodEvento(Integer codEvento) {
 		this.codEvento = codEvento;
-	}
-	/**
-	 * @return the dataInicio
-	 */
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-	/**
-	 * @param dataInicio the dataInicio to set
-	 */
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-	/**
-	 * @return the dataFim
-	 */
-	public Date getDataFim() {
-		return dataFim;
-	}
-	/**
-	 * @param dataFim the dataFim to set
-	 */
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
 	}
 	/**
 	 * @return the usuario
@@ -90,19 +76,18 @@ public class Evento {
 	public void setAvaliacao(Avaliacao avaliacao) {
 		this.avaliacao = avaliacao;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Evento [codEvento=" + codEvento + ", dataInicio=" + dataInicio
-				+ ", dataFim=" + dataFim + ", usuario=" + usuario
-				+ ", avaliacao=" + avaliacao + "]";
+	public Date getDataInicio() {
+		return dataInicio;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+	public Date getDataFim() {
+		return dataFim;
+	}
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -117,9 +102,6 @@ public class Evento {
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -156,6 +138,5 @@ public class Evento {
 			return false;
 		return true;
 	}
-	
 	
 }
