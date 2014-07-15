@@ -23,11 +23,11 @@
 					<p:submenu label="Questões" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
 						<p:menuitem value="Cadastrar Questões" url="/restrict/avaliacao/cadastrarQuestao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
+					<p:submenu label="Turma" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Turma" url="/restrict/turma/cadastrarTurma.xhtml" ajax="false"></p:menuitem>
+					</p:submenu>
 					<p:submenu label="Usuários" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
 						<p:menuitem value="Cadastrar Novo Usuário" url="/restrict/usuario/cadastroNovoUsuario.xhtml" ajax="false"></p:menuitem>
-					</p:submenu>
-					<p:submenu label="Eventos" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
-						<p:menuitem value="Enviar Avaliação" url="/restrict/avaliacao/enviarAvaliacao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 				</p:menubar>
 			</h:form>

@@ -29,7 +29,7 @@ public class Turma implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private TURNO turno;
 	
-	@OneToMany(mappedBy="turma")
+	@OneToMany
 	private List<Usuario> usuarios;
 	
 	@OneToOne
@@ -59,6 +59,27 @@ public class Turma implements Serializable{
 		this.curso = curso;
 	}
 
+	public TURNO getTurno() {
+		return turno;
+	}
+
+	public void setTurno(TURNO turno) {
+		this.turno = turno;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((codTurma == null) ? 0 : codTurma.hashCode());
+		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
+		result = prime * result + ((turno == null) ? 0 : turno.hashCode());
+		result = prime * result
+				+ ((usuarios == null) ? 0 : usuarios.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,6 +98,8 @@ public class Turma implements Serializable{
 			if (other.curso != null)
 				return false;
 		} else if (!curso.equals(other.curso))
+			return false;
+		if (turno != other.turno)
 			return false;
 		if (usuarios == null) {
 			if (other.usuarios != null)
