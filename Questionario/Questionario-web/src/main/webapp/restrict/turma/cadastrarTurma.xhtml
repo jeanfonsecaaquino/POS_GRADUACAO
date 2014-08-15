@@ -20,9 +20,27 @@
 	<br></br>
 	<p:panel header="Cadastro de Turma" styleClass="painelbox">
 		<h:form id="formCadastroTurma">
+		<br/>
 			<h3 style="margin-top: 0">Usuários:</h3>
-			<p:pickList id="pickUsuario" value="#{MBListarUsuarios.usuariosModel}" var="usuarios" itemLabel="#{usuarios}" itemValue="#{usuarios}" />
-			<p:commandButton id="cadastrarTurma" value="Submit" />
+			<p:pickList 
+				id="pickUsuario" 
+				value="#{MBListarUsuarios.usuariosModel}" 
+				var="usuarios"
+				itemLabel="#{usuarios.nome}"
+				itemValue="#{usuarios}"
+				converter="MBUsuarioConverter">
+				<f:facet name="sourceCaption">Disponível</f:facet>
+				<f:facet name="targetCaption">Selecionados</f:facet>
+			</p:pickList>
+			<br/>
+			<h3 style="margin-top: 0">Cursos:</h3>
+			<p:selectOneMenu id="cursos" value="#{MBListarCursos.cursos}" effect="fold" converter="#{FCCursoConverter}">
+				
+				<f:selectItem itemLabel="Selecione o Curso" itemValue=""/>
+				<f:selectItems value="#{MBListarCursos.cursos}" var="curso" itemValue="#{curso}" itemLabel="#{curso.nome}"/>
+			</p:selectOneMenu>
+			<br/>
+			<p:commandButton id="cadastrarTurma" value="Cadastrar Turma" action="#{MBCadastrarTurma.cadastrarTurma}" update="@form"/>
 			<p:message for="formCadastroTurma" showDetail="true"></p:message>
 		</h:form>
 	</p:panel>

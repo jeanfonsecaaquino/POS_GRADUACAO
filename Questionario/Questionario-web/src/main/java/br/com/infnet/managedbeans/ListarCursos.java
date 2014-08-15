@@ -27,12 +27,10 @@ public class ListarCursos implements Serializable{
 	
 	@PostConstruct
 	public void init(){
-		if(cursos==null){
-			try {
-				cursos = cursoDao.listar();
-			} catch (Exception e) {
-				log.error(e.getMessage(),e);
-			}
+		try{
+			cursos = cursoDao.listar();	
+		} catch(Exception e) {
+			log.error(e.getMessage(),e);
 		}
 	}
 
