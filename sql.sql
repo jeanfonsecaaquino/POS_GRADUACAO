@@ -181,7 +181,7 @@ CREATE TABLE `login` (
   PRIMARY KEY (`cod_login`),
   KEY `FK625EF6956F9737C` (`cod_usuario`),
   CONSTRAINT `FK625EF6956F9737C` FOREIGN KEY (`cod_usuario`) REFERENCES `usuario` (`cod_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'jean','A','b71985397688d6f1820685dde534981b',NULL,1),(2,'sec','S','74459ca3cf85a81df90da95ff6e7a207',NULL,2),(7,'marcio','A','1b150854805cbe12194c8dbc55c900cd',NULL,7),(9,'prof','P','d450c5dbcc10db0749277efc32f15f9f',NULL,9);
+INSERT INTO `login` VALUES (1,'jean','A','b71985397688d6f1820685dde534981b',NULL,1),(2,'sec','S','74459ca3cf85a81df90da95ff6e7a207',NULL,2),(7,'marcio','A','1b150854805cbe12194c8dbc55c900cd',NULL,7),(9,'prof','P','d450c5dbcc10db0749277efc32f15f9f',NULL,9),(10,'infnet','S','154742c2cb231e83284e4a18da9bc40b',NULL,10),(11,'holandes','A','202cb962ac59075b964b07152d234b70','marcio.alexandrino@gmail.com',11);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +233,7 @@ CREATE TABLE `questao` (
   `descricao` varchar(255) DEFAULT NULL,
   `opcao` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`cod_questao`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +242,7 @@ CREATE TABLE `questao` (
 
 LOCK TABLES `questao` WRITE;
 /*!40000 ALTER TABLE `questao` DISABLE KEYS */;
-INSERT INTO `questao` VALUES (1,'teste',NULL),(2,'EJB',NULL),(3,'JAVA',NULL),(4,'Voce gostou dos biscoitos?',NULL),(5,'Você achou que o Network foi relevante para sua carreira?',NULL),(6,'O que você achou das instalações da Infnet?',NULL);
+INSERT INTO `questao` VALUES (1,'teste',NULL),(2,'EJB',NULL),(3,'JAVA',NULL),(4,'Voce gostou dos biscoitos?',NULL),(5,'Você achou que o Network foi relevante para sua carreira?',NULL),(6,'O que você achou das instalações da Infnet?',NULL),(7,'Os livros da biblioteca oferecem apoio as diciplinas oferecidas',NULL);
 /*!40000 ALTER TABLE `questao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,10 +284,10 @@ DROP TABLE IF EXISTS `turma`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `turma` (
   `cod_turma` int(11) NOT NULL AUTO_INCREMENT,
-  `cod_curso` int(11) DEFAULT NULL,
+  `curso_cod_curso` int(11) DEFAULT NULL,
   `turno` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`cod_turma`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +296,7 @@ CREATE TABLE `turma` (
 
 LOCK TABLES `turma` WRITE;
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
-INSERT INTO `turma` VALUES (1,NULL,'T'),(2,NULL,'T');
+INSERT INTO `turma` VALUES (1,1,'T');
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,8 +311,9 @@ CREATE TABLE `usuario` (
   `cod_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` varchar(255) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
+  `turma_cod_turma` int(11) DEFAULT NULL,
   PRIMARY KEY (`cod_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +322,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'116.365.407-83','Jean Fonseca'),(2,'116.365.407-83','Secretaria'),(7,'083.058.937-66','Marcio'),(9,'111.111.111-11','Flavio Loungue');
+INSERT INTO `usuario` VALUES (1,'116.365.407-83','Jean Fonseca',1),(2,'116.365.407-83','Secretaria',1),(7,'083.058.937-66','Marcio',1),(9,'111.111.111-11','Flavio Loungue',1),(10,'000.000.000-00','infnet',1),(11,'058.588.049-66','Marcio Alexandrino',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -334,4 +335,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-04 14:24:12
+-- Dump completed on 2014-08-25 14:52:44

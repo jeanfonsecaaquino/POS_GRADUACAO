@@ -52,6 +52,11 @@ public class ListarUsuarios implements Serializable{
 	public void setUsuariosModel(DualListModel<Usuario> usuariosModel) {
 		this.usuariosModel = usuariosModel;
 	}
+	
+	public void cadastrarTurma(){
+		List<Usuario> usuarios = usuariosModel.getTarget();
+		log.info(usuarios.toString());
+	}
 
 }
 
