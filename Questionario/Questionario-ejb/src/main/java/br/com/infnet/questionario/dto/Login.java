@@ -31,6 +31,9 @@ public class Login implements Serializable{
 	@Column
 	private String senha;
 	
+	@Column
+	private String mail;
+	
 	@Column(columnDefinition="enum('P','A','S')")
 	@Enumerated(EnumType.STRING)
 	private PERFIL perfil;
@@ -42,10 +45,13 @@ public class Login implements Serializable{
 	public Login() {
 	}
 
-	public Login(Integer codLogin, String login, String senha, PERFIL perfil) {
+	public Login(Integer codLogin, String login, String senha, String mail,
+			PERFIL perfil) {
+		super();
 		this.codLogin = codLogin;
 		this.login = login;
 		this.senha = senha;
+		this.mail = mail;
 		this.perfil = perfil;
 	}
 
@@ -81,6 +87,14 @@ public class Login implements Serializable{
 		this.perfil = perfil;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -96,6 +110,7 @@ public class Login implements Serializable{
 		result = prime * result
 				+ ((codLogin == null) ? 0 : codLogin.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
 		result = prime * result + ((perfil == null) ? 0 : perfil.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
@@ -119,6 +134,11 @@ public class Login implements Serializable{
 			if (other.login != null)
 				return false;
 		} else if (!login.equals(other.login))
+			return false;
+		if (mail == null) {
+			if (other.mail != null)
+				return false;
+		} else if (!mail.equals(other.mail))
 			return false;
 		if (perfil != other.perfil)
 			return false;

@@ -29,7 +29,10 @@
 			
 							<h:outputLabel value="Username(login):" />
 							<p:inputText value="#{MBCadastrarUsuario.usuario.login.login}" required="true" label="username" />
-			
+							
+							<h:outputLabel value="Email:" />
+							<p:inputText value="#{MBCadastrarUsuario.usuario.login.mail}" required="true" label="email"/>
+							
 							<h:outputLabel value="Password:" />
 							<p:password value="#{MBCadastrarUsuario.usuario.login.senha}" required="true"/>
 							

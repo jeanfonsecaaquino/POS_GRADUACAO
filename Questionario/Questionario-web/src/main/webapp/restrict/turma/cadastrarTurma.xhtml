@@ -9,7 +9,7 @@
 	xmlns:sec="http://www.questionario/security/tags">
 
 <h:head>
-	<link rel="stylesheet" type="text/css"  href="../../estilo/estilo.css"/>
+	<link rel="stylesheet" type="text/css" href="../../estilo/estilo.css" />
 </h:head>
 <h:body>
 	<div class="painelbox">
@@ -17,31 +17,38 @@
 			<ui:include src="../template/header.xhtml"></ui:include>
 		</ui:insert>
 	</div>
-	<br></br>
 	<p:panel header="Cadastro de Turma" styleClass="painelbox">
 		<h:form id="formCadastroTurma">
-		<br/>
-			<h3 style="margin-top: 0">Usuários:</h3>
-			<p:pickList 
-				id="pickUsuario" 
-				value="#{MBListarUsuarios.usuariosModel}" 
-				var="usuarios"
-				itemLabel="#{usuarios.nome}"
-				itemValue="#{usuarios}"
-				converter="MBUsuarioConverter">
-				<f:facet name="sourceCaption">Disponível</f:facet>
-				<f:facet name="targetCaption">Selecionados</f:facet>
-			</p:pickList>
-			<br/>
-			<h3 style="margin-top: 0">Cursos:</h3>
-			<p:selectOneMenu id="cursos" value="#{MBListarCursos.cursos}" effect="fold" converter="#{FCCursoConverter}">
+			<h:panelGrid columns="2">
 				
-				<f:selectItem itemLabel="Selecione o Curso" itemValue=""/>
-				<f:selectItems value="#{MBListarCursos.cursos}" var="curso" itemValue="#{curso}" itemLabel="#{curso.nome}"/>
-			</p:selectOneMenu>
-			<br/>
-			<p:commandButton id="cadastrarTurma" value="Cadastrar Turma" action="#{MBCadastrarTurma.cadastrarTurma}" update="@form"/>
-			<p:message for="formCadastroTurma" showDetail="true"></p:message>
+				<h:outputLabel value="Selecione o Curso:" />
+				<p:selectOneMenu id="cursos" value="#{MBListarCursos.cursos}"
+					effect="fold" converter="#{FCCursoConverter}">
+
+					<f:selectItem itemLabel="Selecione o Curso" itemValue="" />
+					<f:selectItems value="#{MBListarCursos.cursos}" var="curso"
+						itemValue="#{curso}" itemLabel="#{curso.nome}" />
+				</p:selectOneMenu>
+				<h:outputLabel value="Selecione os Alunos:" />
+				
+				<p:pickList id="pickUsuario"
+					value="#{MBListarUsuarios.usuariosModel}" var="usuarios"
+					itemLabel="#{usuarios.nome}" 
+					itemValue="#{usuarios}"
+					converter="MBUsuarioConverter">
+					<f:facet name="sourceCaption">Disponível</f:facet>
+					<f:facet name="targetCaption">Selecionados</f:facet>
+				</p:pickList>
+				
+				<h:outputLabel value="Selecione o Turno:" />
+				<p:selectOneMenu value="#{MBCadastrarTurma.turma.turno}"
+					effect="drop">
+					<f:selectItems value="#{MBCadastrarTurma.turnos}" />
+				</p:selectOneMenu>
+				<p:commandButton id="cadastrarTurma" value="Cadastrar Turma"
+					action="#{MBCadastrarTurma.cadastrarTurma}" update="@form" />
+				<p:message for="formCadastroTurma" showDetail="true"></p:message>
+			</h:panelGrid>
 		</h:form>
 	</p:panel>
 </h:body>

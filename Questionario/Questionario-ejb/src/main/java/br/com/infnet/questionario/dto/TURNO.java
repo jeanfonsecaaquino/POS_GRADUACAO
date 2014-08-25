@@ -2,7 +2,7 @@ package br.com.infnet.questionario.dto;
 
 public enum TURNO {
 	
-	M("TURNO_MANHA","Manhã"),T("TURNO_TARDE","Tarde"),N("TURNO_NOITE","Noite");
+	M("TURNO_MANHA","Manhã"),T("TURNO_TARDE","Tarde"),N("TURNO_NOITE","Noite"),I("TURNO_INTEGRAL","Integral");
 	
 	private String stringValue;
 	private String labelValue;
