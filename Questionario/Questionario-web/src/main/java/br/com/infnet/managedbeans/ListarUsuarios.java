@@ -33,8 +33,7 @@ public class ListarUsuarios implements Serializable{
 	@PostConstruct
 	public void init(){
 		try {
-			//TODO Fazer Listar Alunos
-			usuariosTodos = usuarioDAO.listar();
+			usuariosTodos = usuarioDAO.listarAlunos();					
 			usuariosNaTurma = new ArrayList<Usuario>();
 			setUsuariosModel(new DualListModel<Usuario>(usuariosTodos, usuariosNaTurma));
 			

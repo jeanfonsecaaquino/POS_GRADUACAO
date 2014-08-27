@@ -25,7 +25,7 @@ public class Turma implements Serializable{
 	@Column(name="cod_turma")
 	private Integer codTurma;
 	
-	@Column(columnDefinition="enum('A','T','N')")
+	@Column(columnDefinition="enum('A','T','N','I')")
 	@Enumerated(EnumType.STRING)
 	private TURNO turno;
 	
