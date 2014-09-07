@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="avaliacao")
@@ -34,10 +36,12 @@ public class Avaliacao implements Serializable{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="avaliacao")
 	private List<Evento> eventos;
 	
-	@Column
+	@Column(name="data_inicio")
+	@Temporal(TemporalType.DATE)
 	private Date dataInicio;
 	
-	@Column
+	@Column(name="data_fim")
+	@Temporal(TemporalType.DATE)
 	private Date dataFim;
 	
 	public Avaliacao() {

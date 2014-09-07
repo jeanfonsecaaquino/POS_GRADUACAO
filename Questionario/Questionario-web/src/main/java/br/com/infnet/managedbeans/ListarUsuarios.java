@@ -33,28 +33,11 @@ public class ListarUsuarios implements Serializable{
 	@PostConstruct
 	public void init(){
 		try {
-			usuariosTodos = usuarioDAO.listarAlunos();					
-			usuariosNaTurma = new ArrayList<Usuario>();
-			setUsuariosModel(new DualListModel<Usuario>(usuariosTodos, usuariosNaTurma));
+			
 			
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 		}
-	}
-
-
-	public DualListModel<Usuario> getUsuariosModel() {
-		return usuariosModel;
-	}
-
-
-	public void setUsuariosModel(DualListModel<Usuario> usuariosModel) {
-		this.usuariosModel = usuariosModel;
-	}
-	
-	public void cadastrarTurma(){
-		List<Usuario> usuarios = usuariosModel.getTarget();
-		log.info(usuarios.toString());
 	}
 
 }

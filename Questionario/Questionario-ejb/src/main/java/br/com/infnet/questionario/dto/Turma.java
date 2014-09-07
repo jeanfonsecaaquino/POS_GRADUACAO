@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,7 +34,8 @@ public class Turma implements Serializable{
 	@OneToMany
 	private List<Usuario> usuarios;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="cod_curso")
 	private Curso curso;
 	
 	public Integer getCodTurma() {

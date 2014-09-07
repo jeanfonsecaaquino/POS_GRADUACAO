@@ -92,6 +92,18 @@ alter table resposta
         foreign key (cod_questao) 
         references questao (cod_questao);
         
+        create table turma (
+  cod_turma int not null auto_increment,
+  turno enum('A','T','N'),
+  cod_curso int not null,
+  primary key (cod_turma));
+
+alter table login 
+        add index FK625EF6956F9737D (cod_turma), 
+        add constraint FK625EF6956F9737D 
+        foreign key (cod_curso) 
+		references usuario (cod_usuario);
+        
 insert into usuario values(null,'116.365.407-83','Jean Fonseca');
 insert into login values(null,'jean','P',md5('jean'),1);
 

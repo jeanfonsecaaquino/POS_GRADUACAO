@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -44,9 +43,12 @@ public class Usuario implements Serializable{
 	@OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
 	private List<Evento> eventos;
 	
-	@ManyToOne
-	private Turma turma;
 	
+	/*
+	 *  Verificado um problema ao efetuar um login, estava buscando a turma como um atributo, 
+	 *  então o atributo juntamente com seus gets e sets foram removidos
+	 */
+
 	public Usuario() {
 	}
 

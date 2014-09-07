@@ -63,8 +63,7 @@ public class CadastrarAvaliacao implements Serializable {
 
 	public Modulo getModulo() {
 		if (this.modulo == null) {
-			this.modulo = (Modulo) FacesContext.getCurrentInstance()
-					.getExternalContext().getSessionMap().get("modulo");
+			this.modulo = (Modulo) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("modulo");
 		}
 		return this.modulo;
 	}
@@ -106,9 +105,7 @@ public class CadastrarAvaliacao implements Serializable {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		try {
 			avaliacaoDAO.salvar(comentario, questoes);
-			facesContext.addMessage("formCadastroAvaliacao", new FacesMessage(
-					FacesMessage.SEVERITY_INFO, null,
-					"Avaliação Cadastrada com Sucesso"));
+			facesContext.addMessage("formCadastroAvaliacao", new FacesMessage(FacesMessage.SEVERITY_INFO, null,"Avaliação Cadastrada com Sucesso"));
 		} catch (Exception e) {
 			facesContext.addMessage("formCadastroAvaliacao", new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, null, "Ocorreu um Problema"));

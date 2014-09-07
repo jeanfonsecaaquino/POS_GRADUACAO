@@ -23,8 +23,14 @@
 					<p:submenu label="Questões" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
 						<p:menuitem value="Cadastrar Questões" url="/restrict/avaliacao/cadastrarQuestao.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
-					<p:submenu label="Turma" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
-						<p:menuitem value="Cadastrar Turma" url="/restrict/turma/cadastrarTurma.xhtml" ajax="false"></p:menuitem>
+					<p:submenu label="Modulos" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Modulos" url="/restrict/modulo/cadastrarModulo.xhtml" ajax="false"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Turmas" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Turmas" url="/restrict/turma/cadastrarTurma.xhtml" ajax="false"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Curso" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
+						<p:menuitem value="Cadastrar Curso" url="/restrict/curso/cadastrarCurso.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Usuários" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
 						<p:menuitem value="Cadastrar Novo Usuário" url="/restrict/usuario/cadastroNovoUsuario.xhtml" ajax="false"></p:menuitem>

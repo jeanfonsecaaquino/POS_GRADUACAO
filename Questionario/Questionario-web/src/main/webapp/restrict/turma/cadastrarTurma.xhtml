@@ -20,20 +20,15 @@
 			<h:panelGrid columns="2">
 				
 				<h:outputLabel value="Selecione o Curso:" />
-				<p:selectOneMenu id="cursos" value="#{MBListarCursos.cursos}"
-					effect="fold" converter="#{FCCursoConverter}">
-
-					<f:selectItem itemLabel="Selecione o Curso" itemValue="" />
-					<f:selectItems value="#{MBListarCursos.cursos}" var="curso"
-						itemValue="#{curso}" itemLabel="#{curso.nome}" />
+				<p:selectOneMenu id="cursos" value="#{MBCadastrarTurma.curso.codCurso}">
+					<f:selectItems value="#{MBCadastrarModulo.cursos}"/>
 				</p:selectOneMenu>
 				<h:outputLabel value="Selecione os Alunos:" />
 				
 				<p:pickList id="pickUsuario"
-					value="#{MBListarUsuarios.usuariosModel}" var="usuarios"
+					value="#{MBCadastrarTurma.usuariosModel}" var="usuarios"
 					itemLabel="#{usuarios.nome}" 
-					itemValue="#{usuarios}"
-					converter="MBUsuarioConverter">
+					itemValue="#{usuarios}">
 					<f:facet name="sourceCaption">Disponível</f:facet>
 					<f:facet name="targetCaption">Selecionados</f:facet>
 				</p:pickList>
