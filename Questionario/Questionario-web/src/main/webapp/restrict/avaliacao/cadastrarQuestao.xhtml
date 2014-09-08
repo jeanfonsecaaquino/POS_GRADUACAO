@@ -9,7 +9,7 @@
 	xmlns:sec="http://www.questionario/security/tags">
 
 <h:head>
-	<link rel="stylesheet" type="text/css"  href="../../estilo/estilo.css"/>
+	<link rel="stylesheet" type="text/css" href="../../estilo/estilo.css" />
 </h:head>
 <h:body>
 	<div class="painelbox">
@@ -17,21 +17,37 @@
 			<ui:include src="../template/header.xhtml"></ui:include>
 		</ui:insert>
 	</div>
-	
+
 	<br></br>
-	
+
 	<p:panel header="Cadastro de Questões" styleClass="painelbox">
 		<h:form id="formCadastroQuestao">
 			<h:panelGrid columns="2">
 				Nome:
-				<p:inputText value="#{MBCadastrarQuestao.questao.descricao}" id="descricao" required="true" requiredMessage="O Campo Descrição deve ser preenchido"></p:inputText>
-				<p:commandButton value="Cadastrar" action="#{MBCadastrarQuestao.cadastrarQuestao}" update="@form"></p:commandButton>						
+				<p:inputText value="#{MBCadastrarQuestao.questao.descricao}"
+					id="descricao"
+					requiredMessage="O Campo Descrição deve ser preenchido"></p:inputText>
+				<p:commandButton value="Cadastrar"
+					action="#{MBCadastrarQuestao.cadastrarQuestao}" update="@form"></p:commandButton>
 			</h:panelGrid>
 			<p:message for="formCadastroQuestao" showDetail="true"></p:message>
 			<p:message for="descricao" showDetail="true"></p:message>
+			<h:panelGrid>
+				<p:dataTable var="questao" value="#{MBCadastrarQuestao.questoes}">
+					<p:column headerText="Descrição:">
+						<h:outputText value="#{questao.descricao}" />
+					</p:column>
+					<p:column headerText="Excluir:">
+						<p:commandButton value="Excluir"
+							action="#{MBCadastrarQuestao.excluirQuestao}" update="@form"
+							onclick="if(!confirm('Confirma a exclusão da Questão?')) return false;">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
 		</h:form>
 	</p:panel>
-	
+
 </h:body>
 
 

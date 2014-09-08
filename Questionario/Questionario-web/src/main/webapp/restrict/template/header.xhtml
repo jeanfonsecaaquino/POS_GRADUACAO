@@ -33,7 +33,8 @@
 						<p:menuitem value="Cadastrar Curso" url="/restrict/curso/cadastrarCurso.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Usuários" icon="ui-icon-script" rendered="#{sec:areAnyGranted('ROLE_SECRETARIA')}">
-						<p:menuitem value="Cadastrar Novo Usuário" url="/restrict/usuario/cadastroNovoUsuario.xhtml" ajax="false"></p:menuitem>
+						<p:menuitem value="Cadastrar Usuário" url="/restrict/usuario/cadastroNovoUsuario.xhtml" ajax="false"></p:menuitem>
+						<p:menuitem value="Alterar Usuário" url="/restrict/usuario/alterarUsuario.xhtml" ajax="false"></p:menuitem>
 					</p:submenu>
 				</p:menubar>
 			</h:form>

@@ -1,9 +1,11 @@
 package br.com.infnet.managedbeans;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -22,6 +24,7 @@ public class CadastrarQuestao {
 	
 	@EJB
 	private QuestaoDAO questaoDAO;
+	private List<Questao> questoes;
 	
 	private static Logger log = LoggerFactory.getLogger(CadastrarQuestao.class);
 	
@@ -43,5 +46,28 @@ public class CadastrarQuestao {
 			log.error(e.getMessage(),e);
 		}
 	}
-	
+
+	public List<Questao> getQuestoes() {
+		try {
+			setQuestoes(questaoDAO.listar());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return questoes;
+	}
+
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+	public String excluirQuestao(){
+		try {
+			questaoDAO.excluir(questao);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.questoes = null;
+		return null;
+	}	
 }

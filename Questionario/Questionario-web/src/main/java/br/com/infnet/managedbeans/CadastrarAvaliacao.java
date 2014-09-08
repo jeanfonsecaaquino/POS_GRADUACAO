@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import br.com.infnet.questionario.dao.AvaliacaoDAO;
-import br.com.infnet.questionario.dao.EventoDAO;
 import br.com.infnet.questionario.dao.QuestaoDAO;
 import br.com.infnet.questionario.dto.Comentario;
 import br.com.infnet.questionario.dto.Modulo;
