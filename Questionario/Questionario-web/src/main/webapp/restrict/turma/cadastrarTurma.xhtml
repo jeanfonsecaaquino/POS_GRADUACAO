@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../../estilo/estilo.css" />
 </h:head>
 <h:body>
+	<f:view contentType="text/html"/>
 	<div class="painelbox">
 		<ui:insert name="toolbar">
 			<ui:include src="../template/header.xhtml"></ui:include>
@@ -18,13 +19,12 @@
 	<p:panel header="Cadastro de Turma" styleClass="painelbox">
 		<h:form id="formCadastroTurma">
 			<h:panelGrid columns="2">
-				
 				<h:outputLabel value="Selecione o Curso:" />
-				<p:selectOneMenu id="cursos" value="#{MBCadastrarTurma.curso.codCurso}">
-					<f:selectItems value="#{MBCadastrarModulo.cursos}"/>
+				<p:selectOneMenu id="cursos" value="#{MBCadastrarTurma.cursos}">
+					<f:selectItems value="#{MBCadastrarTurma.cursos}" var="curso" itemValue="curso" itemLabel="#{curso.nome}"/>
 				</p:selectOneMenu>
-				<h:outputLabel value="Selecione os Alunos:" />
 				
+				<h:outputLabel value="Selecione os Alunos:" />
 				<p:pickList id="pickUsuario"
 					value="#{MBCadastrarTurma.usuariosModel}" var="usuarios"
 					itemLabel="#{usuarios.nome}" 
@@ -36,10 +36,10 @@
 				<h:outputLabel value="Selecione o Turno:" />
 				<p:selectOneMenu value="#{MBCadastrarTurma.turma.turno}"
 					effect="drop">
-					<f:selectItems value="#{MBCadastrarTurma.turnos}" />
+					<f:selectItems value="#{MBCadastrarTurma.turnos}" var="turno" itemValue="turno" itemLabel="#{turno.labelValue}"/>
 				</p:selectOneMenu>
 				<p:commandButton id="cadastrarTurma" value="Cadastrar Turma"
-					action="#{MBCadastrarTurma.cadastrarTurma}" update="@form" />
+					action="#{MBCadastrarTurma.cadastrarTurma()}" update="@form" />
 				<p:message for="formCadastroTurma" showDetail="true"></p:message>
 			</h:panelGrid>
 		</h:form>

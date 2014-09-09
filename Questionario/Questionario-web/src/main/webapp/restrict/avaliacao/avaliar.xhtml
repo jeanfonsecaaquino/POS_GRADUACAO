@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css"  href="../../estilo/estilo.css"/>
 </h:head>
 <h:body>
+	<f:view contentType="text/html"/>
 	<div class="painelbox">
 		<ui:insert name="toolbar">
 			<ui:include src="../template/header.xhtml"></ui:include>
@@ -23,6 +24,7 @@
 				<h:outputLabel styleClass="label" value="Avaliação - Alunos da Pós Graduação"></h:outputLabel>
 			</div>
 			<h:panelGrid columns="1">
+				<h:outputLabel value="Nome: #{MBUsuarioLogado.login.usuario.nome}"></h:outputLabel>
 				<h:outputLabel value="CPF: #{MBUsuarioLogado.login.usuario.cpf}"></h:outputLabel> 
 				<h:outputLabel value="Módulo: #{MBCadastrarAvaliacao.modulo.nome}"></h:outputLabel> 
 			</h:panelGrid>

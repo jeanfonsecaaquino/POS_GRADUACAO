@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="../../estilo/estilo.css" />
 </h:head>
 <h:body>
-
+	<f:view contentType="text/html"/>
 	<div class="painelbox">
 		<ui:insert name="toolbar">
 			<ui:include src="../template/header.xhtml"></ui:include>
@@ -22,32 +22,37 @@
 		<h:form id="gerenciarUsuario">
 			<h:panelGrid columns="2">
 				<p:dataTable var="usuario" value="#{MBAlterarUsuario.usuarios}">
-					<p:column headerText="Nome">
-						<h:outputText value="#{usuario.nome}" />
-					</p:column>
-					<p:column headerText="CPF">
-						<h:outputText value="#{usuario.cpf}" />
-					</p:column>
-					<p:column headerText="Perfil">
-						<h:outputText value="#{usuario.login.perfil.labelValue}" />
-					</p:column>
-					<p:column headerText="Login">
-						<h:outputText value="#{usuario.login.login}" />
-					</p:column>
-					<p:column headerText="E-mail">
-						<h:outputText value="#{usuario.login.mail}" />
-					</p:column>
 					
-					<p:column headerText="Excluir">
-						<p:commandButton 
-							value="Excluir" 
-							action="#{MBAlterarUsuario.excluirUsuario}" 
-							update="@form" 
-							onclick="if(!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;">
-						</p:commandButton>
-					</p:column>
+						<p:column headerText="Nome">
+							<h:outputText value="#{usuario.nome}" />
+						</p:column>
+						<p:column headerText="Perfil"
+							sortBy="#{usuario.login.perfil.labelValue}">
+							<h:outputText value="#{usuario.login.perfil.labelValue}" />
+						</p:column>
+						<p:column headerText="Login">
+							<h:outputText value="#{usuario.login.login}" />
+						</p:column>
+						<p:column headerText="E-mail">
+							<h:outputText value="#{usuario.login.mail}" />
+						</p:column>
+						<p:column>
+							<p:commandButton value="Alterar"
+								action="#{MBAlterarUsuario.alterarUsuario}" update="@form">
+							</p:commandButton>
+						</p:column>
+						<p:column>
+							<p:commandButton value="Excluir"
+								action="#{MBAlterarUsuario.excluirUsuario}" update="@form"
+								onclick="if(!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;">
+							</p:commandButton>
+						</p:column>
+						<!-- 
+						<p:ajax event="colReorder"
+							listener="#{MBAlterarUsuario.ordenarColuna}"
+							update="gerenciarUsuario:usuarios" />
+						 -->
 				</p:dataTable>
-
 			</h:panelGrid>
 		</h:form>
 	</p:panel>

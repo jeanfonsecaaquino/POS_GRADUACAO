@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.questionario/security/tags">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="../../estilo/estilo.css" />
+</h:head>
+<h:body>
+	<div class="painelbox">
+		<ui:insert name="toolbar">
+			<ui:include src="../template/header.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+	<p:panel header="Cadastro de Módulo" styleClass="painelbox">
+		<h:form id="formCadastroCurso">
+			<p:messages autoUpdate="true" />
+			<h:form id="formCadastroModulo">
+				<h:panelGrid columns="1">
+					<h:outputLabel value="Nome:" />
+					<p:inputText value="#{MBCadastrarModulo.nome}" id="descricao"
+						requiredMessage="O Campo módulo deve ser preenchido!" />
+					<h:outputLabel value="Cursos:" />
+					<p:selectOneMenu id="modulo" value="#{MBCadastrarModulo.curso}"
+						effect="fold">
+						<f:selectItems value="#{MBCadastrarModulo.cursos}" var="curso"
+							itemLabel="#{curso.nome}" />
+					</p:selectOneMenu>
+					<p:commandButton value="Cadastrar Módulo"
+						action="#{MBCadastrarModulo.cadastrarModulo}" update="@form"></p:commandButton>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:panel header="Módulos:" styleClass="painelbox">
+						<p:dataTable var="modulo" value="#{MBCadastrarModulo.modulos}">
+							<p:column headerText="Nome">
+								<h:outputText value="#{modulo.nome}" />
+							</p:column>
+							<p:column headerText="Curso">
+								<h:outputText value="#{modulo.curso.nome}" />
+							</p:column>
+							<p:column headerText="">
+								<p:commandButton value="Alterar"
+									action="#{MBCadastrarModulo.alterarModulo}" update="@form"></p:commandButton>
+							</p:column>
+							<p:column headerText="">
+								<p:commandButton value="Excluir"
+									action="#{MBCadastrarModulo.excluirModulo}" update="@form"></p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:panelGrid>
+			</h:form>
+		</h:form>
+	</p:panel>
+</h:body>
+
+
+</html>

@@ -5,20 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.primefaces.model.DualListModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.infnet.questionario.dao.CursoDAO;
 import br.com.infnet.questionario.dao.TurmaDAO;
 import br.com.infnet.questionario.dao.UsuarioDAO;
 import br.com.infnet.questionario.dto.Curso;
@@ -34,96 +31,105 @@ public class CadastrarTurma implements Serializable{
 
 	@Inject
 	private Turma turma;
-	
-	@EJB
-	private TurmaDAO turmaDAO;
-	
-	@EJB
-	private UsuarioDAO usuarioDAO;
-	
-	private List<SelectItem> turnos;
-	
 	@Inject
+	private TurmaDAO turmaDAO;
+	@Inject
+	private UsuarioDAO usuarioDAO;
+	@Inject
+	private CursoDAO cursoDAO;
 	private Curso curso;
-	
+	private List<Curso> cursos;
+
+	private List<TURNO> turnos;
+
 	private DualListModel<Usuario> usuariosModel;
-	private List<Usuario> usuariosTodos;
-	private List<Usuario> usuariosNaTurma;
-	
+
 	@PostConstruct
 	public void init(){
-			usuariosTodos = usuarioDAO.listarAlunos();					
-			usuariosNaTurma = new ArrayList<Usuario>();
-			setUsuariosModel(new DualListModel<Usuario>(usuariosTodos, usuariosNaTurma));
-		turnos = new ArrayList<SelectItem>();
-		turnos.clear();
-		for(TURNO turno : TURNO.values()){
-			SelectItem selectItem = new SelectItem(turno, turno.getLabelValue());
-			turnos.add(selectItem);
+	
+		if(turnos == null){
+			turnos = new ArrayList<TURNO>();
+			for(TURNO turno : TURNO.values()){
+				turnos.add(turno);
+			}
+		}
+	}
+
+
+private static Logger log = LoggerFactory.getLogger(CadastrarTurma.class);
+
+public Turma getTurma() {
+	return turma;
+}
+
+public void setTurma(Turma turma) {
+	this.turma = turma;
+}
+
+public List<TURNO> getTurnos() {
+	return turnos;
+}
+
+public void setTurnos(List<TURNO> turnos) {
+	this.turnos = turnos;
+}
+
+public Curso getCurso() {
+	return curso;
+}
+
+public void setCurso(Curso curso) {
+	this.curso = curso;
+}
+
+public DualListModel<Usuario> getUsuariosModel() {
+	if(usuariosModel==null){
+		try{
+			List<Usuario> usuariosTodos = usuarioDAO.listarAlunos();					
+			List<Usuario> usuariosNaTurma = new ArrayList<Usuario>();
+			usuariosModel = new DualListModel<Usuario>(usuariosTodos, usuariosNaTurma);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	
-	private static Logger log = LoggerFactory.getLogger(CadastrarTurma.class);
-	
-	public Turma getTurma() {
-		return turma;
-	}
+	return usuariosModel;
+}
 
-	public void setTurma(Turma turma) {
-		this.turma = turma;
-	}
+public void setUsuariosModel(DualListModel<Usuario> usuariosModel) {
+	this.usuariosModel = usuariosModel;
+}
 
-	public List<SelectItem> getTurnos() {
-		return turnos;
-	}
+public List<Curso> getCursos() {
+	if(cursos == null){
 
-	public void setTurnos(List<SelectItem> turnos) {
-		this.turnos = turnos;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-	
-	public DualListModel<Usuario> getUsuariosModel() {
-		return usuariosModel;
-	}
-
-	public void setUsuariosModel(DualListModel<Usuario> usuariosModel) {
-		this.usuariosModel = usuariosModel;
-	}
-
-	public List<Usuario> getUsuariosTodos() {
-		return usuariosTodos;
-	}
-
-	public void setUsuariosTodos(List<Usuario> usuariosTodos) {
-		this.usuariosTodos = usuariosTodos;
-	}
-
-	public List<Usuario> getUsuariosNaTurma() {
-		return usuariosNaTurma;
-	}
-
-	public void setUsuariosNaTurma(List<Usuario> usuariosNaTurma) {
-		this.usuariosNaTurma = usuariosNaTurma;
-	}
-
-	public void cadastrarTurma(){
-		FacesContext facesContext = FacesContext.getCurrentInstance();
 		try {
-			turma.setCurso(curso);
-			List<Usuario> usuarios = usuariosModel.getTarget();
-			facesContext.addMessage("formCadastroTurma", new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Turma Cadastrada com Sucesso"));
-			turmaDAO.salvar(turma);
+			cursos = cursoDAO.listar();
 		} catch (Exception e) {
-			facesContext.addMessage("formCadastroTurma", new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Ocorreu um Problema"));
-			log.error(e.getMessage(),e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
-	
+	return cursos;
+}
+
+public void setCursos(List<Curso> cursos) {
+	this.cursos = cursos;
+}
+
+public void cadastrarTurma(){
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	try {
+		turma.setCurso(curso);
+		turma.setUsuarios(usuariosModel.getTarget());
+		TURNO turno = (TURNO) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(turnos);
+		turma.setTurno(turno);
+		facesContext.addMessage("formCadastroTurma", new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Turma Cadastrada com Sucesso"));
+		turmaDAO.salvar(turma);
+	} catch (Exception e) {
+		facesContext.addMessage("formCadastroTurma", new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Ocorreu um Problema"));
+		log.error(e.getMessage(),e);
+	}
+}
+
 }
